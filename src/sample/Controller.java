@@ -9,7 +9,6 @@ import com.google.api.services.translate.model.TranslationsResource;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,16 +29,16 @@ import javax.speech.synthesis.Synthesizer;
 import javax.speech.synthesis.SynthesizerModeDesc;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-
 public class Controller extends Application implements Initializable {
     public static DictionaryManagement manage = new DictionaryManagement();
-    private static DictionaryManagement markupList = new DictionaryManagement();
+    private static final DictionaryManagement markupList = new DictionaryManagement();
 
     public static boolean isChanged = false;
     @FXML
@@ -47,6 +46,7 @@ public class Controller extends Application implements Initializable {
     private final AddController addWindow = new AddController();
     private final DeleteController deleteWindow = new DeleteController();
     private final ModifyController modifyWindow = new ModifyController();
+    private final AuthorController AuthorWindow = new AuthorController();
 
     @FXML
     private TextField input;
@@ -63,7 +63,7 @@ public class Controller extends Application implements Initializable {
     @FXML
     private TextArea history;
     @FXML
-    private TextArea mark = new TextArea();
+    private TextArea mark;
     @FXML
     private Button starMarkup;
 
@@ -75,7 +75,7 @@ public class Controller extends Application implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        mark.setText(markupList.showAllWords());
+
     }
 
     public Synthesizer synthesizer
@@ -83,7 +83,7 @@ public class Controller extends Application implements Initializable {
             new SynthesizerModeDesc(Locale.US));
 
     public void initialize() {
-        mark.setText("Here is my updated text.");
+        mark.setText(markupList.showAllWords());
     }
 
     //@Override
@@ -130,12 +130,6 @@ public class Controller extends Application implements Initializable {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                mark.setText(markupList.showAllWords());
-            }
-        });
     }
 
 
@@ -146,8 +140,8 @@ public class Controller extends Application implements Initializable {
                     "-fx-background-size: cover;\n" +
                     "-fx-border-radius: 100px;\n" +
                     "-fx-background-radius: 100px;");
-            ;
             markupList.deleteWord(engWord.getText(), define.getText());
+            mark.setText(markupList.showAllWords());
         } else {
             starMarkup.setStyle("-fx-background-image: url('/images/star2.png');" +
                     " -fx-background-position: center;\n" +
@@ -155,11 +149,12 @@ public class Controller extends Application implements Initializable {
                     "-fx-border-radius: 100px;\n" +
                     "-fx-background-radius: 100px;");
             markupList.addWord(engWord.getText(), define.getText());
+            mark.appendText(engWord.getText() + " : " + define.getText());
         }
-        mark.setText(markupList.showAllWords());
     }
 
     public void inputChanged(KeyEvent event) {
+
         mark.setText(markupList.showAllWords());
         if (event.getCode() == KeyCode.DOWN) {
             listView.requestFocus();
@@ -184,10 +179,7 @@ public class Controller extends Application implements Initializable {
     }
 
     public static boolean contains(String key) {
-        if (manage.dictionaryLookup(key) >= 0) {
-            return true;
-        }
-        return false;
+        return manage.dictionaryLookup(key) >= 0;
     }
 
     public static void add(String text, String text1) {
@@ -204,7 +196,7 @@ public class Controller extends Application implements Initializable {
 
 
     public void seachClicked() throws IOException, GeneralSecurityException {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
 
         String word = input.getText();
@@ -227,12 +219,11 @@ public class Controller extends Application implements Initializable {
                         "-fx-background-radius: 100px;");
             }
         } catch (UnknownHostException ex) {
-
             if (manage.dictionaryLookup(word) >= 0) {
                 String result = manage.getDic().getWord(manage.dictionaryLookup(word)).getWord_explain();
                 define.setText(result);
                 engWord.setText(word);
-                history.appendText("(" + dtf.format(now) + ") - " + word + " : " + translateText(word, TargetLanguage) + '\n');
+                history.appendText("(" + dtf.format(now) + ") - " + word + " : " + result + '\n');
 
                 if (markupList.dictionaryLookup(engWord.getText()) >= 0) {
                     starMarkup.setStyle("-fx-background-image: url('/images/star1.png');" +
@@ -305,19 +296,51 @@ public class Controller extends Application implements Initializable {
         markupList.saveFile("markUp");
     }
 
-    public void speechTarget() {
-        Voice voice;
-        VoiceManager vm = VoiceManager.getInstance();
-        voice = vm.getVoice("kevin16");
-        voice.allocate();
+    public static boolean checkInternet() throws InterruptedException, IOException {
         try {
-            voice.speak(input.getText());
-        } catch (Exception ignored) {
+            URL url = new URL("https://www.google.com/");
+            URLConnection connection = url.openConnection();
+            connection.connect();
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 
-    public void textToSpeech() {
+    public void speakNoInternet(String text) {
+        VoiceManager vm = VoiceManager.getInstance();
+        Voice voice = vm.getVoice("kevin16");
+        voice.allocate();
+        voice.speak(text);
+    }
 
+    public void speechTarget() throws IOException, InterruptedException {
+        if (checkInternet()) {
+            if (TargetLanguage == "VI") {
+                tts convert = new tts("en-US");
+                convert.textToSpeech(engWord.getText());
+            } else {
+                tts convert = new tts("vi-VN");
+                convert.textToSpeech(engWord.getText());
+            }
+        } else {
+            speakNoInternet(engWord.getText());
+        }
+    }
+
+
+    public void speechExplain() throws IOException, InterruptedException {
+        if (checkInternet()) {
+            if (TargetLanguage.equals("VI")) {
+                tts convert = new tts("vi-VN");
+                convert.textToSpeech(define.getText());
+            } else {
+                tts convert = new tts("en-US");
+                convert.textToSpeech(define.getText());
+            }
+        } else {
+            speakNoInternet(define.getText());
+        }
     }
 
     public void swapEntoVi() {
@@ -343,5 +366,9 @@ public class Controller extends Application implements Initializable {
 
     public void openDeleteWindow() {
         deleteWindow.run();
+    }
+
+    public void openAuthorWindow() {
+        AuthorWindow.run();
     }
 }

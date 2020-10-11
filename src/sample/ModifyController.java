@@ -42,28 +42,25 @@ public class ModifyController {
     }
 
     public void modifyButtonClicked() {
-        if(word.getText().length() == 0) {
+        if (word.getText().length() == 0) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Cảnh báo");
             alert.setHeaderText(null);
             alert.setContentText("Bạn chưa nhập từ. Vui lòng kiểm tra lại!");
             alert.showAndWait();
-        }
-        else if(mean.getText().length() == 0) {
+        } else if (mean.getText().length() == 0) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Cảnh báo");
             alert.setHeaderText(null);
             alert.setContentText("Bạn chưa nhập nghĩa. Vui lòng kiểm tra lại!");
             alert.showAndWait();
-        }
-        else if(!Controller.contains(word.getText())) {
+        } else if (!Controller.contains(word.getText())) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Cảnh báo");
             alert.setHeaderText(null);
             alert.setContentText("Từ bạn nhập không có trong từ điển!");
             alert.showAndWait();
-        }
-        else {
+        } else {
             Controller.isChanged = true;
             Controller.manage.modifyWord(word.getText(), mean.getText());
             Alert alert = new Alert(AlertType.INFORMATION);

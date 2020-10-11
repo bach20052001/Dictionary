@@ -4,10 +4,12 @@
     -fx-background-size: cover;
 }
 
-#speechTarget {
+#speechTarget, #speechExplain {
     -fx-background-image: url('../images/speaker2.png');
     -fx-background-position: center;
     -fx-background-size: cover;
+    -fx-border-radius: 100px;
+    -fx-background-radius: 100px;
 }
 
 #searchButton {
@@ -55,4 +57,9 @@
 #TOP {
     -fx-background-image: url("../images/TITLE.png");
     -fx-background-size: 402px 214px;
+}
+
+#Author {
+    -fx-background-image: url("../images/backgroundAuthor.jpg");
+    -fx-background-size: 720px 473px;
 }

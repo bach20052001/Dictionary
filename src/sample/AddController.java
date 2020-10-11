@@ -1,6 +1,5 @@
 package sample;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import Dictionary.*;
+
+import java.io.IOException;
 
 public class AddController {
 
@@ -26,7 +26,6 @@ public class AddController {
 
     @FXML
     private TextArea mean;
-
 
 
     public void run() {
@@ -44,28 +43,25 @@ public class AddController {
     }
 
     public void addButtonClicked() {
-        if(word.getText().length() == 0) {
+        if (word.getText().length() == 0) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Cảnh báo");
             alert.setHeaderText(null);
             alert.setContentText("Bạn chưa nhập từ. Vui lòng kiểm tra lại!");
             alert.showAndWait();
-        }
-        else if(mean.getText().length() == 0) {
+        } else if (mean.getText().length() == 0) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Cảnh báo");
             alert.setHeaderText(null);
             alert.setContentText("Bạn chưa nhập nghĩa. Vui lòng kiểm tra lại!");
             alert.showAndWait();
-        }
-        else if(Controller.contains(word.getText())) {
+        } else if (Controller.contains(word.getText())) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Cảnh báo");
             alert.setHeaderText(null);
             alert.setContentText("Từ bạn nhập đã có trong từ điển!");
             alert.showAndWait();
-        }
-        else {
+        } else {
             Controller.isChanged = true;
             Controller.manage.addWord(word.getText(), mean.getText());
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -77,6 +73,7 @@ public class AddController {
             stage.close();
         }
     }
+
     public void closeWindow() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();

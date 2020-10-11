@@ -39,21 +39,19 @@ public class DeleteController {
     }
 
     public void deleteButtonClicked() {
-        if(word.getText().length() == 0) {
+        if (word.getText().length() == 0) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Cảnh báo");
             alert.setHeaderText(null);
             alert.setContentText("Bạn chưa nhập từ. Vui lòng kiểm tra lại!");
             alert.showAndWait();
-        }
-        else if(!Controller.contains(word.getText())) {
+        } else if (!Controller.contains(word.getText())) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Cảnh báo");
             alert.setHeaderText(null);
             alert.setContentText("Từ bạn nhập không có trong từ điển!");
             alert.showAndWait();
-        }
-        else {
+        } else {
             Controller.isChanged = true;
             Controller.manage.deleteWord(word.getText(), null);
             Alert alert = new Alert(AlertType.INFORMATION);
