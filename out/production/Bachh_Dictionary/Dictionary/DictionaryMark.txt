@@ -1,0 +1,2 @@
+go:đi
+nice:tốt

@@ -1,0 +1,58 @@
+#voiceSearch {
+    -fx-background-image: url('../images/micro2.png');
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
+
+#speechTarget {
+    -fx-background-image: url('../images/speaker2.png');
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
+
+#searchButton {
+    -fx-background-image: url('../images/search2.png');
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
+
+#voiceSearch, #speechTarget, #searchButton {
+    -fx-border-radius: 100%;
+    -fx-background-radius: 100%;
+}
+
+#addButton, #changeButton, #deleteButton, #VnToEn {
+    -fx-border-radius: 100px;
+    -fx-background-radius: 100px;
+    -fx-background-color: #fec400;
+    -fx-border-color: #fec400;
+    -fx-cursor: hand;
+}
+
+#starMarkup {
+    -fx-background-color: white;
+}
+
+#EnToVn {
+    -fx-background-color: #1e2956;
+    -fx-border-color: #fec400;
+    -fx-text-fill: #fec400;
+    -fx-cursor: hand;
+    -fx-border-radius: 100px;
+    -fx-background-radius: 100px;
+}
+
+@font-face {
+    font-family: myFont;
+    src: url('../images/Font/Quicksand-Regular.ttf');
+}
+
+#input {
+    -fx-background-radius: 100px;
+    -fx-border-radius: 100px;
+}
+
+#TOP {
+    -fx-background-image: url("../images/TITLE.png");
+    -fx-background-size: 402px 214px;
+}
