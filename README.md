@@ -1,12 +1,32 @@
 # Bachh 's Dictionary
 
+# Bài tập lớn lập trình hướng đối tượng
+
 ![demo image](https://github.com/bach20052001/Dictionary/blob/master/src/Images/application.JPG)
 
 # Author
 
 Tác giả : Nguyễn Đình Bách
+
 MSSV : 19020501
+
 Lớp : INT2204 6
+
+# Feature
+
+Dịch Anh-Việt
+
+Dịch Việt-Anh
+
+Thêm sửa xóa từ ngữ
+
+Phát âm từ ngữ
+
+Gợi ý tìm từ
+
+Lưu lịch sử
+
+Danh sách yêu thích
 
 # Version 1.0
 
