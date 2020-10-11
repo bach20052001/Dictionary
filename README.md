@@ -36,7 +36,7 @@
 
 # Library 
 
-Sử dụng nhiều thư viện không đếm nổi :)) và có gọi API translate và giọng nói từ Google 
+- Sử dụng nhiều thư viện không đếm nổi :)) và có gọi API translate và giọng nói từ Google 
 
 # Cảm ơn đã sử dụng.Peace!!!
 
