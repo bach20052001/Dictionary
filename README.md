@@ -42,5 +42,4 @@
 
 # - «-(¯`v´¯)-« I'm ʙᴀᴄʜ. »-(¯`v´¯)-»
 
-![end image](https://github.com/bach20052001/Dictionary/blob/master/src/Images/uet.png)
 
