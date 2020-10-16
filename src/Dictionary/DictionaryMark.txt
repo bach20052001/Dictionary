@@ -1,3 +1,0 @@
-go:đi
-noob:gà mờ
-now:hiện nay

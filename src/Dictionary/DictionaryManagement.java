@@ -189,7 +189,11 @@ public class DictionaryManagement {
         String result = "";
         for (int i = 0; i < dic.getListWord().size(); i++) {
             if (dic.getWord(i).getWord_target().indexOf(target) == 0){
-                if (dic.getWord(i).getWord_target().substring(0,target.length()).equals(target))
+                if (dic.getWord(i).getWord_target().substring(0,target.length()).equals(target)
+                    &&(dic.getWord(i).getWord_target().substring(target.length(),target.length() + 1).equals("")
+                    ||(dic.getWord(i).getWord_target().substring(target.length(),target.length() + 1).equals(" "))
+                    ||(dic.getWord(i).getWord_target().substring(target.length(),target.length() + 1).equals(";"))
+                    ||(dic.getWord(i).getWord_target().substring(target.length(),target.length() + 1).equals(","))))
                     result = dic.getWord(i).getWord_explain();
             }
         }

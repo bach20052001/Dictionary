@@ -228,8 +228,10 @@ public class Controller extends Application implements Initializable {
                 history.appendText("(" + dtf.format(now) + ") - " + word + " : " + result + '\n');
             } else {
                 if (manage.Search(word) != ""){
-                    define.setText(manage.Search(word));
+                    String result = manage.Search(word);
+                    define.setText(result);
                     engWord.setText(word);
+                    history.appendText("(" + dtf.format(now) + ") - " + word + " : " + result + '\n');
                 }
                 else {
                     define.setText("Từ \"" + word + "\" không có trong dữ liệu từ điển!");
