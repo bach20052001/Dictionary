@@ -1,6 +1,7 @@
 package sample;
 
 import Dictionary.DictionaryManagement;
+import Dictionary.Word;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.translate.Translate;
@@ -350,6 +351,7 @@ public class Controller extends Application implements Initializable {
             VnToEn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
         }
         else {
+            manage.getDic().setListWord(new ArrayList<Word>());
             manage.insertFromFile();
             EnToVn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
             VnToEn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
@@ -363,12 +365,8 @@ public class Controller extends Application implements Initializable {
             VnToEn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
         }
         else {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Warning !!!");
-            alert.setHeaderText(null);
-            alert.setContentText("Vui lòng kiểm tra kết nối internet");
-            alert.showAndWait();
-//            manage.insertFromFile("ViToEn");
+            manage.getDic().setListWord(new ArrayList<Word>());
+            manage.insertFromFile("ViToEn");
             EnToVn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
             VnToEn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
         }
