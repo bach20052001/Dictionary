@@ -179,10 +179,21 @@ public class DictionaryManagement {
     public String showSomeWords(String pre) {
         StringBuilder show = new StringBuilder();
         for (int i = 0; i < dic.getListWord().size(); i++) {
-            if (dic.getWord(i).getWord_target().indexOf(pre) >= 0)
+            if (dic.getWord(i).getWord_target().indexOf(pre) == 0)
                 show.append(dic.getWord(i).getWord_target()).append(" : ").append(dic.getWord(i).getWord_explain()).append("\n\n");
         }
         return show.toString();
+    }
+
+    public String Search(String target){
+        String result = "";
+        for (int i = 0; i < dic.getListWord().size(); i++) {
+            if (dic.getWord(i).getWord_target().indexOf(target) == 0){
+                if (dic.getWord(i).getWord_target().substring(0,target.length()).equals(target))
+                    result = dic.getWord(i).getWord_explain();
+            }
+        }
+        return result;
     }
 
     public String showAllWords() {

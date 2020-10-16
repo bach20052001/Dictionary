@@ -201,48 +201,40 @@ public class Controller extends Application implements Initializable {
         LocalDateTime now = LocalDateTime.now();
 
         String word = input.getText();
+
+        if (markupList.dictionaryLookup(engWord.getText()) >= 0) {
+            starMarkup.setStyle("-fx-background-image: url('/images/star1.png');" +
+                    " -fx-background-position: center;\n" +
+                    "-fx-background-size: cover;\n" +
+                    "-fx-border-radius: 100px;\n" +
+                    "-fx-background-radius: 100px;");
+        } else {
+            starMarkup.setStyle("-fx-background-image: url('/images/star2.png');" +
+                    " -fx-background-position: center;\n" +
+                    "-fx-background-size: cover;\n" +
+                    "-fx-border-radius: 100px;\n" +
+                    "-fx-background-radius: 100px;");
+        }
+
         if (checkInternet()) {
             engWord.setText(word);
             define.setText(translateText(word, TargetLanguage));
             history.appendText("(" + dtf.format(now) + ") " + word + " : " + translateText(word, TargetLanguage) + '\n');
-
-            if (markupList.dictionaryLookup(engWord.getText()) >= 0) {
-                starMarkup.setStyle("-fx-background-image: url('/images/star2.png');" +
-                        " -fx-background-position: center;\n" +
-                        "-fx-background-size: cover;\n" +
-                        "-fx-border-radius: 100px;\n" +
-                        "-fx-background-radius: 100px;");
-            } else {
-                starMarkup.setStyle("-fx-background-image: url('/images/star1.png');" +
-                        " -fx-background-position: center;\n" +
-                        "-fx-background-size: cover;\n" +
-                        "-fx-border-radius: 100px;\n" +
-                        "-fx-background-radius: 100px;");
-            }
         } else {
             if (manage.dictionaryLookup(word) >= 0) {
                 String result = manage.getDic().getWord(manage.dictionaryLookup(word)).getWord_explain();
                 define.setText(result);
                 engWord.setText(word);
                 history.appendText("(" + dtf.format(now) + ") - " + word + " : " + result + '\n');
-
-                if (markupList.dictionaryLookup(engWord.getText()) >= 0) {
-                    starMarkup.setStyle("-fx-background-image: url('/images/star1.png');" +
-                            " -fx-background-position: center;\n" +
-                            "-fx-background-size: cover;\n" +
-                            "-fx-border-radius: 100px;\n" +
-                            "-fx-background-radius: 100px;");
-                } else {
-                    starMarkup.setStyle("-fx-background-image: url('/images/star2.png');" +
-                            " -fx-background-position: center;\n" +
-                            "-fx-background-size: cover;\n" +
-                            "-fx-border-radius: 100px;\n" +
-                            "-fx-background-radius: 100px;");
-                }
-
             } else {
-                define.setText("Từ \"" + word + "\" không có trong dữ liệu từ điển!");
-                engWord.setText("");
+                if (manage.Search(word) != ""){
+                    define.setText(manage.Search(word));
+                    engWord.setText(word);
+                }
+                else {
+                    define.setText("Từ \"" + word + "\" không có trong dữ liệu từ điển!");
+                    engWord.setText(word);
+                }
             }
         }
     }
@@ -344,32 +336,20 @@ public class Controller extends Application implements Initializable {
         }
     }
 
-    public void swapEnToVi() throws IOException, InterruptedException {
-        if (checkInternet()){
+    public void swapEnToVi() throws IOException {
             TargetLanguage = "VI";
-            EnToVn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
-            VnToEn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
-        }
-        else {
             manage.getDic().setListWord(new ArrayList<Word>());
             manage.insertFromFile();
             EnToVn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
             VnToEn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
-        }
     }
 
-    public void swapViToEn() throws IOException, InterruptedException {
-        if (checkInternet()){
+    public void swapViToEn() throws IOException {
             TargetLanguage = "EN";
-            EnToVn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
-            VnToEn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
-        }
-        else {
             manage.getDic().setListWord(new ArrayList<Word>());
             manage.insertFromFile("ViToEn");
             EnToVn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
             VnToEn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
-        }
     }
 
     public void openAddWindow() {
