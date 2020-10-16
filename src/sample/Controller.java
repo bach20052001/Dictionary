@@ -21,6 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.speech.Central;
@@ -30,7 +31,6 @@ import javax.speech.synthesis.SynthesizerModeDesc;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -51,7 +51,7 @@ public class Controller extends Application implements Initializable {
     @FXML
     private TextField input;
     @FXML
-    private TextArea define;
+    private Text define;
     @FXML
     private Label engWord;
     @FXML
@@ -195,12 +195,12 @@ public class Controller extends Application implements Initializable {
     }
 
 
-    public void seachClicked() throws IOException, GeneralSecurityException {
+    public void seachClicked() throws IOException, GeneralSecurityException, InterruptedException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
 
         String word = input.getText();
-        try {
+        if (checkInternet()) {
             engWord.setText(word);
             define.setText(translateText(word, TargetLanguage));
             history.appendText("(" + dtf.format(now) + ") " + word + " : " + translateText(word, TargetLanguage) + '\n');
@@ -218,7 +218,7 @@ public class Controller extends Application implements Initializable {
                         "-fx-border-radius: 100px;\n" +
                         "-fx-background-radius: 100px;");
             }
-        } catch (UnknownHostException ex) {
+        } else {
             if (manage.dictionaryLookup(word) >= 0) {
                 String result = manage.getDic().getWord(manage.dictionaryLookup(word)).getWord_explain();
                 define.setText(result);
@@ -343,17 +343,35 @@ public class Controller extends Application implements Initializable {
         }
     }
 
-    public void swapEntoVi() {
-        TargetLanguage = "VI";
-        EnToVn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
-        VnToEn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
-
+    public void swapEnToVi() throws IOException, InterruptedException {
+        if (checkInternet()){
+            TargetLanguage = "VI";
+            EnToVn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
+            VnToEn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
+        }
+        else {
+            manage.insertFromFile();
+            EnToVn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
+            VnToEn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
+        }
     }
 
-    public void swapViToEn() {
-        TargetLanguage = "EN";
-        EnToVn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
-        VnToEn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
+    public void swapViToEn() throws IOException, InterruptedException {
+        if (checkInternet()){
+            TargetLanguage = "EN";
+            EnToVn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
+            VnToEn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
+        }
+        else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Warning !!!");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng kiểm tra kết nối internet");
+            alert.showAndWait();
+//            manage.insertFromFile("ViToEn");
+            EnToVn.setStyle("-fx-background-color: #fec400;-fx-text-fill: #1e2956;");
+            VnToEn.setStyle("-fx-background-color: #1e2956;-fx-text-fill: #fec400;");
+        }
     }
 
     public void openAddWindow() {

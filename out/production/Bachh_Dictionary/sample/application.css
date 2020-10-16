@@ -63,3 +63,7 @@
     -fx-background-image: url("../images/backgroundAuthor.jpg");
     -fx-background-size: 720px 473px;
 }
+
+#engWord{
+    -fx-font-style: italic;
+}

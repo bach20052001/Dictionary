@@ -7,23 +7,20 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-            prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sample.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <stylesheets>
-        <URL value="@application.css"/>
+        <URL value="@application.css" />
     </stylesheets>
     <top>
         <MenuBar prefHeight="26.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
@@ -32,166 +29,126 @@
                     <items>
                         <MenuItem fx:id="saveItem" mnemonicParsing="false" onAction="#saveItemClicked" text="Lưu lại">
                             <accelerator>
-                                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP"
-                                                    shortcut="UP"/>
+                                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                        <MenuItem fx:id="exportItem" mnemonicParsing="false" onAction="#exportItemClicked"
-                                  text="Xuất dữ liệu"/>
-                        <MenuItem fx:id="closeItem" mnemonicParsing="false" text="Thoát">
-                            <accelerator>
-                                <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP"
-                                                    shortcut="UP"/>
-                            </accelerator>
-                        </MenuItem>
+                        <MenuItem fx:id="exportItem" mnemonicParsing="false" onAction="#exportItemClicked" text="Xuất dữ liệu" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Hỗ trợ">
                     <items>
-                        <MenuItem fx:id="aboutItem" onAction="#openAuthorWindow" mnemonicParsing="false"
-                                  text="Tác giả"/>
+                        <MenuItem fx:id="aboutItem" mnemonicParsing="false" onAction="#openAuthorWindow" text="Tác giả" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
     </top>
     <left>
-        <AnchorPane prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: black;"
-                    BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
             <children>
                 <AnchorPane fx:id="TOP" layoutX="-1.0" prefHeight="214.0" prefWidth="402.0">
                     <children>
-                        <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="27.0"
-                               prefHeight="74.0" prefWidth="214.0" text="Bach &#10;Dictionary" textAlignment="CENTER"
-                               textFill="WHITE">
+                        <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="70.0" prefHeight="74.0" prefWidth="214.0" text="Bach &#10;Dictionary" textAlignment="CENTER" textFill="WHITE">
                             <font>
-                                <Font name="Quicksand SemiBold" size="28.0"/>
+                                <Font name="Quicksand SemiBold" size="28.0" />
                             </font>
                         </Label>
-                        <ImageView fx:id="dictionaryImage" fitHeight="88.0" fitWidth="86.0" layoutX="48.0"
-                                   layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="dictionaryImage" fitHeight="88.0" fitWidth="86.0" layoutX="51.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Images/dictionary.png"/>
-                            </image>
-                        </ImageView>
-                        <ImageView fx:id="dictionaryImage1" fitHeight="96.0" fitWidth="92.0" layoutX="134.0"
-                                   layoutY="107.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../Images/uet.png"/>
+                                <Image url="@../Images/dictionary.png" />
                             </image>
                         </ImageView>
                     </children>
                 </AnchorPane>
-                <ListView fx:id="listView" layoutX="-1.0" layoutY="214.0" onMouseClicked="#clickedListView"
-                          prefHeight="559.0" prefWidth="402.0"/>
-                <TextArea fx:id="list_Word" editable="false" layoutX="-1.0" layoutY="214.0" prefHeight="559.0"
-                          prefWidth="402.0">
+                <ListView fx:id="listView" layoutX="-1.0" layoutY="214.0" onMouseClicked="#clickedListView" prefHeight="559.0" prefWidth="402.0" />
+                <TextArea fx:id="list_Word" editable="false" layoutX="-1.0" layoutY="214.0" prefHeight="559.0" prefWidth="402.0">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </TextArea>
             </children>
         </AnchorPane>
     </left>
     <right>
-        <AnchorPane prefHeight="694.0" prefWidth="700.0" style="-fx-background-color: #444e7f "
-                    BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="694.0" prefWidth="700.0" style="-fx-background-color: #444e7f " BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="engWord" layoutX="30.0" layoutY="161.0" prefHeight="47.0" prefWidth="600.0"
-                       textFill="WHITE">
+                <TextArea editable="false" layoutY="214.0" prefHeight="559.0" prefWidth="700.0" wrapText="true">
                     <font>
-                        <Font name="System Bold" size="32.0"/>
-                    </font>
-                </Label>
-                <TextArea fx:id="define" editable="false" layoutY="214.0" prefHeight="559.0" prefWidth="700.0"
-                          wrapText="true">
-                    <font>
-                        <Font name="Ubuntu Regular" size="20.0"/>
+                        <Font name="Quicksand Medium" size="20.0" />
                     </font>
                 </TextArea>
-                <Button fx:id="searchButton" alignment="CENTER" layoutX="543.0" layoutY="54.0" mnemonicParsing="false"
-                        onAction="#seachClicked" prefHeight="40.0" prefWidth="40.0" textFill="WHITE">
+                <Label fx:id="engWord" layoutX="28.0" layoutY="219.0" prefHeight="47.0" prefWidth="600.0" textFill="#1e2956">
                     <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Button>
-                <TextField fx:id="input" layoutX="30.0" layoutY="54.0" onKeyReleased="#inputChanged" prefHeight="40.0"
-                           prefWidth="506.0" promptText="Search...." style="-fx-border-color: #1e2956;">
-                    <font>
-                        <Font size="16.0"/>
-                    </font>
-                </TextField>
-                <Button fx:id="deleteButton" layoutX="30.0" layoutY="102.0" mnemonicParsing="false"
-                        onAction="#openDeleteWindow" prefHeight="39.0" prefWidth="110.0"
-                        style="-fx-background-color: fec400; -fx-border-color: fec400; -fx-cursor: hand;"
-                        text="Xóa từ (-)" textFill="#1e2956">
-                    <font>
-                        <Font name="Quicksand Medium" size="16.0"/>
-                    </font>
-                </Button>
-                <Button fx:id="changeButton" layoutX="146.0" layoutY="102.0" mnemonicParsing="false"
-                        onAction="#openModifyWindow" prefHeight="39.0" prefWidth="110.0"
-                        style="-fx-background-color: fec400; -fx-border-color: fec400; -fx-cursor: hand;" text="Sửa từ"
-                        textFill="#1e2956">
-                    <font>
-                        <Font name="Quicksand Medium" size="16.0"/>
-                    </font>
-                </Button>
-                <Button fx:id="addButton" layoutX="262.0" layoutY="102.0" mnemonicParsing="false"
-                        onAction="#openAddWindow" prefHeight="39.0" prefWidth="110.0"
-                        style="-fx-background-color: fec400; -fx-border-color: fec400; -fx-cursor: hand;"
-                        text="Thêm từ (+)" textFill="#1e2956">
-                    <font>
-                        <Font name="Quicksand Medium" size="14.0"/>
-                    </font>
-                </Button>
-                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="40.0"
-                       prefWidth="291.0" text="Bạn cần dịch từ gì ?" textAlignment="CENTER" textFill="#fec400">
-                    <font>
-                        <Font name="Quicksand SemiBold" size="28.0"/>
+                        <Font name="Quicksand SemiBold" size="40.0" />
                     </font>
                 </Label>
-                <Button fx:id="voiceSearch" layoutX="590.0" layoutY="54.0" mnemonicParsing="false" prefHeight="40.0"
-                        prefWidth="40.0" style="-fx-border-radius: 50%;"/>
-                <Button fx:id="speechTarget" layoutX="646.0" layoutY="168.0" mnemonicParsing="false"
-                        onAction="#speechTarget" prefHeight="40.0" prefWidth="40.0"/>
-                <Button fx:id="EnToVn" layoutX="377.0" layoutY="102.0" mnemonicParsing="false" onAction="#swapEntoVi"
-                        prefHeight="39.0" prefWidth="114.0" text="Anh - Việt" textFill="#1e2956">
+                <Button fx:id="searchButton" alignment="CENTER" layoutX="543.0" layoutY="54.0" mnemonicParsing="false" onAction="#seachClicked" prefHeight="40.0" prefWidth="40.0" textFill="WHITE">
                     <font>
-                        <Font name="Quicksand Medium" size="14.0"/>
+                        <Font size="18.0" />
                     </font>
                 </Button>
-                <Button fx:id="VnToEn" layoutX="496.0" layoutY="102.0" mnemonicParsing="false" onAction="#swapViToEn"
-                        prefHeight="39.0" prefWidth="113.0" text="Việt - Anh" textFill="#1e2956">
+                <TextField fx:id="input" layoutX="30.0" layoutY="54.0" onKeyReleased="#inputChanged" prefHeight="40.0" prefWidth="506.0" promptText="Search...." style="-fx-border-color: #1e2956;">
                     <font>
-                        <Font name="Quicksand Medium" size="14.0"/>
+                        <Font size="16.0" />
+                    </font>
+                </TextField>
+                <Button fx:id="deleteButton" layoutX="30.0" layoutY="102.0" mnemonicParsing="false" onAction="#openDeleteWindow" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: fec400; -fx-border-color: fec400; -fx-cursor: hand;" text="Xóa từ (-)" textFill="#1e2956">
+                    <font>
+                        <Font name="Quicksand Medium" size="16.0" />
                     </font>
                 </Button>
-                <TitledPane collapsible="false" layoutY="515.0" prefHeight="260.0" prefWidth="350.0"
-                            text="Lịch sử tìm kiếm">
+                <Button fx:id="changeButton" layoutX="146.0" layoutY="102.0" mnemonicParsing="false" onAction="#openModifyWindow" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: fec400; -fx-border-color: fec400; -fx-cursor: hand;" text="Sửa từ" textFill="#1e2956">
+                    <font>
+                        <Font name="Quicksand Medium" size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="addButton" layoutX="262.0" layoutY="102.0" mnemonicParsing="false" onAction="#openAddWindow" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: fec400; -fx-border-color: fec400; -fx-cursor: hand;" text="Thêm từ (+)" textFill="#1e2956">
+                    <font>
+                        <Font name="Quicksand Medium" size="14.0" />
+                    </font>
+                </Button>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="40.0" prefWidth="291.0" text="Bạn cần dịch từ gì ?" textAlignment="CENTER" textFill="#fec400">
+                    <font>
+                        <Font name="Quicksand SemiBold" size="28.0" />
+                    </font>
+                </Label>
+                <Button fx:id="voiceSearch" layoutX="590.0" layoutY="54.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 50%;" />
+                <Button fx:id="speechTarget" layoutX="646.0" layoutY="168.0" mnemonicParsing="false" onAction="#speechTarget" prefHeight="40.0" prefWidth="40.0" />
+                <Button fx:id="EnToVn" layoutX="377.0" layoutY="102.0" mnemonicParsing="false" onAction="#swapEnToVi" prefHeight="39.0" prefWidth="114.0" text="Anh - Việt" textFill="#1e2956">
+                    <font>
+                        <Font name="Quicksand Medium" size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="VnToEn" layoutX="496.0" layoutY="102.0" mnemonicParsing="false" onAction="#swapViToEn" prefHeight="39.0" prefWidth="113.0" text="Việt - Anh" textFill="#1e2956">
+                    <font>
+                        <Font name="Quicksand Medium" size="14.0" />
+                    </font>
+                </Button>
+                <TitledPane collapsible="false" layoutY="515.0" prefHeight="260.0" prefWidth="350.0" text="Lịch sử tìm kiếm">
                     <content>
                         <TextArea fx:id="history" editable="false" prefHeight="233.0" prefWidth="350.0">
                             <font>
-                                <Font name="Quicksand Medium" size="14.0"/>
+                                <Font name="Quicksand Medium" size="14.0" />
                             </font>
                         </TextArea>
                     </content>
                 </TitledPane>
-                <TitledPane collapsible="false" layoutX="350.0" layoutY="515.0" prefHeight="260.0" prefWidth="349.0"
-                            text="Từ được đánh dấu">
+                <TitledPane collapsible="false" layoutX="350.0" layoutY="515.0" prefHeight="260.0" prefWidth="349.0" text="Từ được đánh dấu">
                     <content>
                         <TextArea fx:id="mark" editable="false" prefHeight="234.0" prefWidth="362.0">
                             <font>
-                                <Font name="Quicksand Medium" size="14.0"/>
+                                <Font name="Quicksand Medium" size="14.0" />
                             </font>
                         </TextArea>
                     </content>
                 </TitledPane>
-                <Button fx:id="starMarkup" contentDisplay="CENTER" layoutX="646.0" layoutY="223.0"
-                        mnemonicParsing="false" onAction="#mark" prefHeight="40.0" prefWidth="40.0"
-                        textFill="#ffffff00"/>
-                <Button fx:id="speechExplain" layoutX="646.0" layoutY="277.0" mnemonicParsing="false"
-                        onAction="#speechExplain" prefHeight="40.0" prefWidth="40.0"/>
+                <Button fx:id="starMarkup" contentDisplay="CENTER" layoutX="646.0" layoutY="223.0" mnemonicParsing="false" onAction="#mark" prefHeight="40.0" prefWidth="40.0" textFill="#ffffff00" />
+                <Button fx:id="speechExplain" layoutX="646.0" layoutY="277.0" mnemonicParsing="false" onAction="#speechExplain" prefHeight="40.0" prefWidth="40.0" />
+            <Text fx:id="define" layoutX="31.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="594.936767578125">
+               <font>
+                  <Font name="Quicksand Medium" size="18.0" />
+               </font>
+            </Text>
             </children>
         </AnchorPane>
     </right>

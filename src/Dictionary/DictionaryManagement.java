@@ -44,15 +44,23 @@ public class DictionaryManagement {
 
 
     public void insertFromFile(String markUp) throws FileNotFoundException {
-            String line;
-            File myObj = new File("C:\\Users\\Lenovo\\IdeaProjects\\Bachh_Dictionary\\src\\Dictionary\\DictionaryMark.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                line = myReader.nextLine();
-                int pos = line.indexOf(':');
-                dic.addWord(new Word(line.substring(0,pos),line.substring(pos+1)));
+        String line;
+        File myObj = null;
+            if (markUp.equals("markUp")){
+                myObj = new File("C:\\Users\\Lenovo\\IdeaProjects\\Bachh_Dictionary\\src\\Dictionary\\DictionaryMark.txt");
+
             }
+            else if (markUp.equals("ViToEn")){
+                myObj = new File("C:\\Users\\Lenovo\\IdeaProjects\\Bachh_Dictionary\\src\\Dictionary\\dicForWrite.txt");
+            }
+        Scanner myReader = new Scanner(myObj);
+        while (myReader.hasNextLine()) {
+            line = myReader.nextLine();
+            int pos = line.indexOf(':');
+            dic.addWord(new Word(line.substring(0,pos),line.substring(pos+1)));
+        }
     }
+
 
 
     public int dictionaryLookup() {
