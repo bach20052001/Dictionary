@@ -457,7 +457,6 @@ ceiling	trần nhà
 celebrate	kỷ niệm, làm lễ kỷ niệm; tán dương, ca tụng
 celebration	sự kỷ niệm, lễ kỷ niệm; sự tán dương, sự ca tụng
 cell	ô, ngăn
-cellphone, cellular phone	điện thoại di động
 cent	đồng xu (bằng 1/100 đô la)
 centimetre	xen ti mét
 centimetre, centimeter	xen ti met
@@ -1936,6 +1935,7 @@ north	phía bắc, phương bắc
 northern	bắc
 nose	mũi
 not	không
+noob    ngu	null
 note	lời ghi, lời ghi chép; ghi chú, ghi chép
 nothing	không gì, không cái gì
 notice	thông báo, yết thị; chú ý, để ý, nhận biết. take notice of chú ý
