@@ -53,6 +53,7 @@ public class DictionaryManagement {
             else if (markUp.equals("ViToEn")){
                 myObj = new File("C:\\Users\\Lenovo\\IdeaProjects\\Bachh_Dictionary\\src\\Dictionary\\dicForWrite.txt");
             }
+        assert myObj != null;
         Scanner myReader = new Scanner(myObj);
         while (myReader.hasNextLine()) {
             line = myReader.nextLine();
@@ -80,8 +81,7 @@ public class DictionaryManagement {
     }
 
     public int dictionaryLookup(String en) {
-        int pos = Collections.binarySearch(dic.getListWord(), new Word(en, null));
-        return pos;
+        return Collections.binarySearch(dic.getListWord(), new Word(en, null));
     }
 
 
@@ -124,12 +124,7 @@ public class DictionaryManagement {
             Scanner sc = new Scanner(System.in);
             System.out.println("Insert the word you want to delete in English : ");
             String word = sc.nextLine();
-            for (Word element : dic.getListWord()) {
-                if (element.getWord_target().equals(word)) {
-                    dic.getListWord().remove(element);
-
-                }
-            }
+            dic.getListWord().removeIf(element -> element.getWord_target().equals(word));
         } catch (Exception ex) {
             System.out.println("removed");
         }
@@ -160,7 +155,7 @@ public class DictionaryManagement {
     public List<String> prefixSeach(String prefix) {
         List<String> words = new ArrayList<>();
         for (int i = 0; i < dic.getListWord().size(); i++) {
-            if (dic.getWord(i).getWord_target() == prefix) {
+            if (dic.getWord(i).getWord_target().equals(prefix)) {
                 words.add(dic.getWord(i).getWord_explain());
             }
         }
@@ -169,7 +164,7 @@ public class DictionaryManagement {
 
     public String get(String selectedItem) {
         for (int i = 0; i < dic.getListWord().size(); i++) {
-            if (dic.getWord(i).getWord_target() == selectedItem) {
+            if (dic.getWord(i).getWord_target().equals(selectedItem)) {
                 return dic.getWord(i).getWord_explain();
             }
         }
@@ -193,7 +188,7 @@ public class DictionaryManagement {
                     &&(dic.getWord(i).getWord_target().substring(target.length(),target.length() + 1).equals("")
                     ||(dic.getWord(i).getWord_target().substring(target.length(),target.length() + 1).equals(","))
                     ||(dic.getWord(i).getWord_target().substring(target.length(),target.length() + 1).equals(";"))
-                    ||(dic.getWord(i).getWord_target().substring(target.length(),target.length() + 1).equals(" "))))
+                    ||(dic.getWord(i).getWord_target().startsWith(" ", target.length()))))
                     result = dic.getWord(i).getWord_explain();
             }
         }
@@ -203,7 +198,7 @@ public class DictionaryManagement {
     public String showAllWords() {
         StringBuilder show = new StringBuilder();
         for (int i = 0; i < dic.getListWord().size(); i++) {
-            show.append(dic.getWord(i).getWord_target()).append(" : ").append(dic.getWord(i).getWord_explain()).append('\n');
+            show.append(dic.getWord(i).getWord_target()).append(" : ").append(dic.getWord(i).getWord_explain()).append("\n\n");
         }
         return show.toString();
     }

@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 public class tts {
 
-    Synthesiser synthesizer = new Synthesiser("AIzaSyBfrjADyNCTDqDeoHQ2ZR_k67dQVxTrmi0");
+    Synthesiser synthesizer = new Synthesiser("AIzaSyBRVMXos9pBxQmOrspPfPILqbxDJXXIPCM");
 
     private String targetLanguage = "en-US";
 
