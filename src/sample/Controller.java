@@ -130,6 +130,9 @@ public class Controller extends Application implements Initializable {
                 Optional<ButtonType> action = alert.showAndWait();
                 if (action.get() == ButtonType.OK) {
                     primaryStage.close();
+                    manage.dictionaryExportToFile();
+                    manage.saveFile();
+                    markupList.saveFile("markUp");
                 }
                 e.consume();
             }
@@ -211,7 +214,7 @@ public class Controller extends Application implements Initializable {
             t.start();
             t.join();
             String result = t.getResult();
-            if (result != "") {
+            if (!result.equals("")) {
                 define.setText(result);
                 engWord.setText(word);
                 history.appendText("(" + dtf.format(now) + ") - " + word + " : " + result + '\n');

@@ -11,6 +11,7 @@ tuyệt đối, hoàn toàn : absolutely
 thu hút, hấp thu, lôi cuốn : absorb
 lộng hành, lạm dụng : abuse
 thuộc học viện, đh, viện hàn lâm : academic
+ưqwdsa : acbd
 trọng âm, dấu trọng âm : accent
 chấp nhận, chấp thuận : accept
 có thể chấp nhận, chấp thuận : acceptable
@@ -1928,6 +1929,7 @@ tiếng ồn, sự huyên náo : noise
 null : non
 không ai, không người, vật gì : none
 lời nói vô lý, vô nghĩa : nonsense
+null : noob    ngu
 cũng không : nor
 thường, bình thường; tình trạng bình thường : normal
 thông thường, như thường lệ : normally
@@ -1935,7 +1937,6 @@ phía bắc, phương bắc : north
 bắc : northern
 mũi : nose
 không : not
-null : noob    ngu
 lời ghi, lời ghi chép; ghi chú, ghi chép : note
 không gì, không cái gì : nothing
 thông báo, yết thị; chú ý, để ý, nhận biết. take notice of chú ý : notice

@@ -1,0 +1,2 @@
+go:đi
+run:chạy; sự chạy
